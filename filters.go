@@ -30,7 +30,13 @@ func BindRequest(req *http.Request) (filters *Filters, err error) {
 func (filters *Filters) String() (s string) {
 	x := recurRules(filters.Rules, filters.Combinator)
 
-	return strings.Join(x, " ")
+	s = strings.Join(x, " ")
+
+	if filters.Not {
+		s = "!" + s
+	}
+
+	return s
 }
 
 func recurRules(rules []*Rule, combinator string) (x []string) {
