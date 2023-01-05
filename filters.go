@@ -28,6 +28,10 @@ func BindRequest(req *http.Request) (filters *Filters, err error) {
 }
 
 func (filters *Filters) String() (s string) {
+	if filters == nil || len(filters.Rules) < 1 {
+		return ""
+	}
+
 	x := recurRules(filters.Rules, filters.Combinator)
 
 	s = strings.Join(x, " ")
