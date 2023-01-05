@@ -27,9 +27,9 @@ func BindRequest(req *http.Request) (filters *Filters, err error) {
 	return filters, nil
 }
 
-// Usable will return whether or not the filters obj can be used as a query string.
+// Exists will return whether or not the filters obj can be used as a query string.
 // Use this instead of checking String() == "" because that will take time to construct the string.
-func (filters *Filters) Usable() bool {
+func (filters *Filters) Exists() bool {
 	if filters == nil || len(filters.Rules) < 1 {
 		return false
 	}
@@ -39,7 +39,7 @@ func (filters *Filters) Usable() bool {
 
 // String returns the filters object parsed as a query string.
 func (filters *Filters) String() (s string) {
-	if !filters.Usable() {
+	if !filters.Exists() {
 		return ""
 	}
 
