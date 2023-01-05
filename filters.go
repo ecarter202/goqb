@@ -9,6 +9,7 @@ import (
 
 type (
 	Filters struct {
+		query      string  // if called more than once
 		Rules      []*Rule `json:"rules"`
 		Combinator string  `json:"combinator"`
 		Not        bool    `json:"not"`
@@ -41,6 +42,8 @@ func (filters *Filters) Exists() bool {
 func (filters *Filters) String() (s string) {
 	if !filters.Exists() {
 		return ""
+	} else if filters.query != "" {
+		return filters.query
 	}
 
 	x := recurRules(filters.Rules, filters.Combinator)
@@ -50,6 +53,8 @@ func (filters *Filters) String() (s string) {
 	if filters.Not {
 		s = "!" + s
 	}
+
+	filters.query = s
 
 	return s
 }
