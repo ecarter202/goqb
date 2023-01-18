@@ -202,8 +202,7 @@ func (r *Rule) In() (s string) {
 	switch r.Value.(type) {
 	case string:
 		x = strings.Split(r.Value.(string), ",")
-	case []string, []int, []float64, []interface{}:
-		fmt.Printf("%+v\n", r.Value) // delete me
+	case []string, []int, []float64, []bool, []interface{}:
 		x = stringSlice(r.Value)
 	}
 

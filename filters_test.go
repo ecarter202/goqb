@@ -97,7 +97,7 @@ const testBody1 = `{
 	  },
 	  {
 		"field": "lastName",
-		"value": "Vai, Vaughan",
+		"value": ["Vai", "Vaughan"],
 		"operator": "in"
 	  },
 	  {
