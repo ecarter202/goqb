@@ -199,6 +199,8 @@ func (r *Rule) DoesNotEndWith() (s string) {
 func (r *Rule) In() (s string) {
 	var x []string
 
+	fmt.Println("VALUE:", r.Value)
+
 	switch r.Value.(type) {
 	case string:
 		x = strings.Split(r.Value.(string), ",")
