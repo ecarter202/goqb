@@ -1,3 +1,3 @@
-module github.com/ecarter202/goqb
+module github.com/ecarter/goqb
 
 go 1.19
