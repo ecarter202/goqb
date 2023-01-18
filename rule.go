@@ -199,7 +199,7 @@ func (r *Rule) DoesNotEndWith() (s string) {
 func (r *Rule) In() (s string) {
 	var x []string
 
-	fmt.Printf("TYPE: %T\n", r.Value)
+	return fmt.Sprintf("TYPE: %T\n", r.Value)
 
 	switch r.Value.(type) {
 	case string:
