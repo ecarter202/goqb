@@ -197,7 +197,14 @@ func (r *Rule) DoesNotEndWith() (s string) {
 }
 
 func (r *Rule) In() (s string) {
-	x := strings.Split(r.Value.(string), ",")
+	var x []string
+
+	switch r.Value.(type) {
+	case string:
+		x = strings.Split(r.Value.(string), ",")
+	case []string, []int, []float64, []interface{}:
+		x = stringSlice(r.Value)
+	}
 
 	switch r.ValueSource {
 	case "field":

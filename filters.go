@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"reflect"
 	"strings"
 )
 
@@ -119,4 +120,26 @@ func allowedRules(allowedFields map[string]struct{}, rules []*Rule) (allowed []*
 	}
 
 	return allowed
+}
+
+func stringSlice(face interface{}) (x []string) {
+	switch reflect.TypeOf(face).Kind() {
+	case reflect.Slice:
+		s := reflect.ValueOf(face)
+
+		for i := 0; i < s.Len(); i++ {
+			x = append(x, fmt.Sprintf("%v", s.Index(i)))
+		}
+	}
+
+	return x
+}
+
+func sliceToStringSlice[P any](slice []P) []string {
+	var strs []string
+	for _, v := range slice {
+		strs = append(strs, fmt.Sprintf("%v", v))
+	}
+
+	return strs
 }
