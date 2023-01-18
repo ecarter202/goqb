@@ -203,6 +203,7 @@ func (r *Rule) In() (s string) {
 	case string:
 		x = strings.Split(r.Value.(string), ",")
 	case []string, []int, []float64, []interface{}:
+		fmt.Printf("%+v\n", r.Value) // delete me
 		x = stringSlice(r.Value)
 	}
 
