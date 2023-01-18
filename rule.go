@@ -2,7 +2,6 @@ package goqb
 
 import (
 	"fmt"
-	"log"
 	"strings"
 )
 
@@ -199,8 +198,6 @@ func (r *Rule) DoesNotEndWith() (s string) {
 
 func (r *Rule) In() (s string) {
 	var x []string
-
-	log.Fatal("VALUE:", r.Value)
 
 	switch r.Value.(type) {
 	case string:
